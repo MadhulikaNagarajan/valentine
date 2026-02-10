@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  overflow: hidden;
+}
+
+.card {
+  background: white;
+  padding: 60px 50px;
+  border-radius: 25px;
+  text-align: center;
+  width: 95%;
+  max-width: 650px;
+  min-height: 420px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  color: #ff4d6d;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  position: relative;
+  height: 220px;
+  overflow: visible;
+}
+
+button {
+  padding: 14px 28px;
+  font-size: 18px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: absolute;
+  white-space: nowrap;
+}
+
+#yesBtn {
+  background: #ff4d6d;
+  color: white;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+#noBtn {
+  background: #ddd;
+  color: #333;
+  left: 50%;
+  top: 80px;
+  transform: translateX(-50%);
+}
+
+.ps-note {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+}
+
+.final-message {
+  display: none;
+  margin-top: 30px;
+  font-size: 20px;
+  color: #ff2e63;
+  line-height: 1.5;
+}
+
+.flirty {
+  margin-top: 15px;
+  font-style: italic;
+  color: #d6336c;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>VikkiBidda Will you be my Valentine? 💖</h1>
+
+  <div class="buttons" id="buttons">
+    <button id="yesBtn">Yes 😍</button>
+    <button id="noBtn">No 🙃</button>
+  </div>
+
+  <p class="ps-note">
+    P.S. Selecting "No" may lead to instant regret 😌
+  </p>
+
+  <div class="final-message" id="finalMessage">
+    💌 <strong>Yay! Best decision ever.</strong> <br><br>
+    Make yourself free on <strong>Feb 14</strong> 😉  
+    We have a game to play that needs  
+    <strong>a lot of energy & stamina</strong> 😏🔥  
+
+    <div class="flirty">
+      Warning: Side effects may include butterflies,  
+      stolen kisses, and a very happy wife 💋
+    </div>
+  </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const buttons = document.getElementById("buttons");
+const finalMessage = document.getElementById("finalMessage");
+
+let yesScale = 1;
+let growCount = 0;
+const maxGrow = 5;
+
+function moveNoButton() {
+  const maxX = buttons.clientWidth - noBtn.offsetWidth;
+  const maxY = buttons.clientHeight - noBtn.offsetHeight;
+
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+
+  if (growCount < maxGrow) {
+    yesScale += 0.15;
+    yesBtn.style.transform = `translateX(-50%) scale(${yesScale})`;
+    growCount++;
+  }
+}
+
+noBtn.addEventListener("mouseenter", moveNoButton);
+noBtn.addEventListener("touchstart", moveNoButton);
+
+yesBtn.addEventListener("click", () => {
+  document.querySelector("h1").style.display = "none";
+  document.querySelector(".buttons").style.display = "none";
+  document.querySelector(".ps-note").style.display = "none";
+  finalMessage.style.display = "block";
+});
+</script>
+
+</body>
+</html>
